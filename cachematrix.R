@@ -1,5 +1,5 @@
 ## Function makeCacheMatrix(x = matrix()):
-##      Creates a list of matrix function pointers and stores a matrix.
+##      Stores inverse of matrix with get and set functions
 ## Arguments: 
 ##      x: matrix
 ## Local variables:
@@ -9,7 +9,7 @@
 ##      get(): returns matrix
 ##      getinverse(): returns inverse of matrix
 ##      setinverse(inverse): assigns inverse of matrix
-##      list(...): list pointers to local functions
+##      list(...): pointers to local functions
 
 makeCacheMatrix <- function(x = matrix()) {    
         i <- NULL

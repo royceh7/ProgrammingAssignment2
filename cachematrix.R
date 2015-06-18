@@ -1,16 +1,24 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Function makeCacheMatrix(x = matrix()):
+##      Creates a list of matrix function pointers and stores a matrix.
+## Arguments: 
+##      x: matrix
+## Local variables:
+##      i: inverse of matrix or NUll
+## Local functions:
+##      set(y): assigns a new matrix
+##      get(): returns matrix
+##      getinverse(): returns inverse of matrix
+##      setinverse(inverse): assigns inverse of matrix
+##      list(...): list pointers to local functions
 
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(x = matrix()) {    
         i <- NULL
         set <- function(y) {
                 x <<- y
                 i <<- NULL
         }
         get <- function() x
-        setinverse <- function(inverse) i <<- inverse
+        setinverse <- function(inverse) i <<- inverse 
         getinverse <- function() i
         list(set = set, get = get,
              setinverse = setinverse,
@@ -18,7 +26,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Function cacheSolve(x = makeCacheMatrix(x = matrix()))
+##      Finds square matrix inverse, and and stores inverse.
+##      Returns the inverse matrix and indicates if "getting cached data"
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -28,8 +38,12 @@ cacheSolve <- function(x, ...) {
                 return(i)
         }
         data <- x$get()
-        i <- solve(data, ...)
+        i <- solve(data)
         x$setinverse(i)
         i
 }
-}
+mdat <- matrix(c(4,7, 2,6), nrow = 2, ncol = 2, byrow = TRUE)
+cm <- makeCacheMatrix(mdat)
+cm$get()
+cm$getinverse()
+cacheSolve(cm)
